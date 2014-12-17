@@ -1,0 +1,24 @@
+
+import datetime as dt
+import gpxpy
+import gpxpy.gpx
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some gpx file.')
+parser.add_argument('gpx_file', help='file to process.')
+args = parser.parse_args()
+
+
+def main():
+    gpx_file = open(args.gpx_file, 'r')
+    gpx = gpxpy.parse(gpx_file)
+    for track in gpx.tracks:
+        for segment in track.segments:
+            for point in segment.points:
+                timestamp = int((point.time - dt.datetime(1970, 1, 1)).total_seconds())
+                print '{0},{1},{2}'.format(point.latitude,
+                                           point.longitude,
+                                           timestamp)
+
+if __name__ == "__main__":
+    main()
