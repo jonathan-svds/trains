@@ -1,4 +1,11 @@
+"""gpx-to-hbase
 
+Usage: ./gpx-to-hbase filename.gpx
+Will output through stdout:
+
+latitude,longitude,epoch
+
+"""
 import datetime as dt
 import gpxpy
 import gpxpy.gpx
