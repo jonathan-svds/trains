@@ -32,12 +32,12 @@ col_names=['lat','lon']
 #Open connection to HBase and create table
 
 connection=happy.make_connection(hostname)
-happy.delete_table('trains',connection)
 print "making table" 
 try:
 	table=happy.create_table(table_name, family_names, max_versions_list, connection)  
 except:
-	print 'table already exists'
+	print 'table already exists, exiting'
+	exit()
 
 #Put data into HBase 
 
