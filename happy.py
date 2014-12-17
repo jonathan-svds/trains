@@ -39,7 +39,7 @@ def hbase_put(row_key, family_names, col_names, data, table, tstamp):
 	data_entry={}
 	for family in family_names:
 		for i in range(0,len(col_names)):
-			for j in range(0,len(col_names[0])):
+			for j in range(0,len(data[0])):
 				data_entry[family+':'+col_names[i]+str(tstamp[j])]=data[i][j]
 	b = table.batch(timestamp=tstamp[-1])
 	b.put(row_key, data_entry)
